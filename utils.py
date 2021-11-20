@@ -4,6 +4,11 @@ import os
 def bash_command(bash_command:str):
     return str(subprocess.check_output(bash_command, shell=True))
 
+def suppr(window):
+    bash_command("xdotool key --window %d Delete"%window)
+
+def echap(window):
+    bash_command("xdotool key --window %d Escape"%window)
 
 def click(x:int, y:int, window=None):
     bash_command("xdotool mousemove --window %d %d %d"%(window,
@@ -11,14 +16,14 @@ def click(x:int, y:int, window=None):
     bash_command("xdotool click --window %d %d"%(window, 1))
 
 def type_in_win(string, window=None):
-    bash_command("xdotool type --delay 50 --window %d %s"%(window, string))
+    bash_command("xdotool type --delay 100 --window %d %s"%(window, string))
 
 def get_window_by_name(name:str):
     output = bash_command("xdotool search --name '%s'" % name)
     return [int(x) for x in output[2:-3].split('\\n')]
 
 def focus(window:str):
-    bash_command("xdotool windowmap %d"%(window))
+    bash_command("xdotool windowfocus %d"%(window))
 
 def get_window_size(window:str):
     bash_command("xdotool search --name '%s'" % name)
@@ -41,7 +46,6 @@ def read_on_screenshot(window:str, filename:str):
 
 if __name__ == "__main__":
     out = get_window_by_name("Dofus 2")[0]
-    focus(out)
     #move to 0 0
     click(230, 152, window=out)
     type_in_win("test", window=out)

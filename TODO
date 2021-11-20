@@ -1,0 +1,9 @@
+Next goals :
+
+- Multi-Instance bot :
+	- Specify to each instance a sub-category
+	- Agregate data :
+		- agregate data from ech instance
+	- Objective : Hourly data.
+- Graphs :D
+	- Make nice graph from acquired data.
